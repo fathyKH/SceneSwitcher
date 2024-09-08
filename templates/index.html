@@ -1,0 +1,376 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scene Switcher</title>
+    <meta name="viewport" content="width=device-width , initial-scale= 1" />
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <script src="{% static 'js/script.js' %}"></script>
+  </head>
+
+  <body>
+    <div id="modal" class="modal">
+      <div id="close-button" class="close-button">
+        <img src="{% static 'assets/x.png' %}" alt="" />
+      </div>
+      <ul>
+        <a href="#home"><li>Home</li></a>
+        <a href="#features-section"><li>Features</li></a>
+        <a href="#how-it-works"><li>Benefits</li></a>
+        <a href="#pricing-section"><li>Pricing</li></a>
+        <a href="#contact-section"><li>Contact</li></a>
+      </ul>
+    </div>
+
+    <main>
+      <header>
+        <div class="logo">
+          <img src="{% static 'assets/logo.png' %}" alt="" />
+        </div>
+
+        <nav>
+          <ul>
+            <a href="#home"><li>Home</li></a>
+            <a href="#features-section"><li>Features</li></a>
+            <a href="#how-it-works"><li>Benefits</li></a>
+            <a href="#pricing-section"><li>Pricing</li></a>
+            <a href="#contact-section"><li>Contact</li></a>
+          </ul>
+        </nav>
+
+        <div class="nav-buttons">
+          <button id="login">
+            <a href="{% url 'login' %}" style="color: #ffffff">Login</a>
+          </button>
+          <button class="get-started" id="start-button-hero">
+            <a href="{% url 'app' %}">Get started</a>
+          </button>
+        </div>
+
+        <div id="menu-button" class="ham-icon">
+          <img src="{% static 'assets/hamburger.png' %}" alt="" />
+        </div>
+      </header>
+      <section id="home" class="hero-content">
+        <div class="bg">
+          <img src="{% static 'assets/bg.png' %}" alt="" />
+        </div>
+
+        <h1>Maximize Your Video Ads ROI with SceneSwitcher.io</h1>
+        <p>
+          Our revolutionary software allows you to effortlessly change scenes on
+          your performing VSLs, which helps you create fresh variations that
+          reduce ad fatigue and resonate with a wider audience. Easily test
+          different scenes to find the perfect combination that skyrockets your
+          conversions and profits, without the need for expensive video editors.
+        </p>
+
+        <button class="get-started dark" id="start-button-content">
+          Get started
+        </button>
+
+        <div class="video-frame">
+          <img src="{% static 'assets/video-frame.png' %}" alt="" />
+        </div>
+      </section>
+
+      <hr />
+
+      <section id="" class="showcases">
+        <div class="showcases-content">
+          <h1>The Power Of SceneSwitcher.io</h1>
+          <p>
+            See how we turned this fatigued ad from barely breaking even to a
+            2-3 ROAS by simply changing the scenes, while keeping the voice-over
+            and script exactly the same.
+          </p>
+        </div>
+
+        <div class="variation primary">
+          <h1>Original video</h1>
+          <img src="{% static 'assets/foot-image.png' %}" alt="" />
+        </div>
+
+        <div class="video-section">
+          <div class="variation">
+            <h1>Variation 1</h1>
+            <img src="{% static 'assets/foot-image.png' %}" alt="" />
+          </div>
+          <div class="variation">
+            <h1>Variation 2</h1>
+            <img src="{% static 'assets/foot-image.png' %}" alt="" />
+          </div>
+          <div class="variation">
+            <h1>Variation 3</h1>
+            <img src="{% static 'assets/foot-image.png' %}" alt="" />
+          </div>
+        </div>
+      </section>
+
+      <section id="features-section" class="features">
+        <h1>Why SceneSwitcher.io is Your Key to Success:</h1>
+
+        <div class="feature-content">
+          <div class="feature">
+            <div class="feature-icon">
+              <img src="{% static 'assets/f-icon-1.png' %}" alt="" />
+            </div>
+            <h2>Combat Ad Fatigue</h2>
+            <p>
+              Your audience has seen it all before. The same ads, the same
+              visuals, the same message. With SceneSwitcher.io, you can easily
+              swap out scenes in your VSLs, keeping your content fresh and
+              captivating. Say goodbye to skipped ads and hello to higher
+              engagement!
+            </p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">
+              <img src="{% static 'assets/f-icon-4.png' %}" alt="" />
+            </div>
+            <h2>Reinforce Your Message</h2>
+            <p>
+              Different scenes, same powerful message. Our software allows you
+              to present your core message in various ways, reinforcing your
+              point without sounding repetitive. Keep your viewers hooked and
+              drive your message home!
+            </p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">
+              <img src="{% static 'assets/f-icon-3.png' %}" alt="" />
+            </div>
+            <h2>Continuous Optimization</h2>
+            <p>
+              Even the most profitable VSLs have room for improvement.
+              SceneSwitcher.io empowers you to test different visuals,
+              messaging, and pacing with ease. Constantly tweak and refine your
+              VSLs to achieve the highest possible conversion rates!
+            </p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">
+              <img src="{% static 'assets/f-icon-2.png' %}" alt="" />
+            </div>
+            <h2>Evoke Stronger Emotions</h2>
+            <p>
+              The right visuals can make all the difference. With our
+              scene-switching capabilities, you can find the perfect combination
+              of images and pacing to evoke powerful emotions in your audience.
+              Tug at their heartstrings and compel them to take action!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works" class="how-it-works">
+        <div class="how-it-works-content">
+          <h1>How It Works: A Step-by-Step Video Demonstration</h1>
+          <p>
+            Curious about how SceneSwitcher.io works? Watch our quick video
+            demonstration to see just how easy it is to optimize your VSLs:
+          </p>
+
+          <div class="green-frame">
+            <img src="{% static 'assets/green-frame.png' %}" alt="" />
+          </div>
+
+          <p>As you can see, with SceneSwitcher.io, you can:</p>
+
+          <div class="steps">
+            <div class="step">
+              <h1>01</h1>
+              <h6>Upload</h6>
+              <p>Upload your VSL to our user-friendly platform</p>
+            </div>
+            <div class="step">
+              <h1>02</h1>
+              <h6>Add New Visual</h6>
+              <p>Hit Shift + Click on the scene and upload your new visual</p>
+            </div>
+            <div class="step">
+              <h1>03</h1>
+              <h6>Process</h6>
+              <p>Click "Process" and let SceneSwitcher.io work its magic</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing-section" class="pricing">
+        <div class="pricing-content">
+          <h1>Flexible Pricing to Suit Your Needs</h1>
+          <p>
+            We offer three simple packages to ensure you get the most out of
+            SceneSwitcher.io
+          </p>
+        </div>
+
+        <div class="pricing-cards">
+          <div class="card">
+            <div class="card-icon">
+              <img src="{% static 'assets/pricing-1.png' %}" alt="" />
+            </div>
+            <h2>Basic</h2>
+            <span class="price"
+              >$197 <span class="per-month">Per Month</span></span
+            >
+            <p class="rate-per-video">$4.96/video</p>
+            <p class="pricing-feature">
+              <img src="{% static 'assets/check-dark.png' %}" alt="" />
+              Up To 25 Video Variations Per Month
+            </p>
+            <button>
+              Get Started <img src="{% static 'assets/tail-dark.png' %}" alt="" />
+            </button>
+          </div>
+          <div class="card primary">
+            <span class="badge">Most Popular</span>
+            <div class="card-icon">
+              <img src="{% static 'assets/pricing-2.png' %}" alt="" />
+            </div>
+            <h2>Professional</h2>
+            <span class="price"
+              >$297 <span class="per-month">Per Month</span></span
+            >
+            <p class="rate-per-video">$3.96/video</p>
+            <p class="pricing-feature">
+              <img src="{% static 'assets/check-light.png' %}" alt="" />
+              Up To 50 Video Variations Per Month
+            </p>
+            <button>
+              Get Started <img src="{% static 'assets/tail-light.png' %}" alt="" />
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <img src="{% static 'assets/pricing-3.png' %}" alt="" />
+            </div>
+            <h2>Premium</h2>
+            <span class="price"
+              >$497 <span class="per-month">Per Month</span></span
+            >
+            <p class="rate-per-video">$3.47/video</p>
+            <p class="pricing-feature">
+              <img src="{% static 'assets/check-dark.png' %}" alt="" />
+              Up To 100 Video Variations Per Month
+            </p>
+            <button>
+              <a href="/process.html">Get started</a>
+              <img src="{% static 'assets/tail-dark.png' %}" alt="" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact-section" class="contact">
+        <div class="contact-content">
+          <h1>Contact Us</h1>
+          <h1 id="get-in-touch">Get in Touch</h1>
+          <p>We’d love to hear from you. Please fill out this form.</p>
+        </div>
+
+        <form class="form">
+          <div class="name-wrapper">
+            <fieldset name="first-name">
+              <legend>First Name</legend>
+              <input
+                type="text"
+                id="first-name"
+                name="first-name"
+                placeholder="First Name"
+              /><br /><br />
+            </fieldset>
+            <fieldset name="last-name">
+              <legend>Last Name</legend>
+              <input
+                type="text"
+                id="last-name"
+                name="last-name"
+                placeholder="Last Name"
+              /><br /><br />
+            </fieldset>
+          </div>
+          <fieldset name="email">
+            <legend>Email</legend>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@company.com"
+            />
+          </fieldset>
+          <fieldset name="message">
+            <legend name>Message</legend>
+            <textarea name="message" id="message"></textarea>
+          </fieldset>
+
+          <button id="send-message">Send Message</button>
+        </form>
+      </section>
+
+      <section id="cta" class="cta">
+        <div class="cta-content">
+          <h1>Join the SceneSwitcher.io Revolution</h1>
+          <p>
+            Don't let stale ads and high editing costs hold your business back.
+            Join the countless marketers and entrepreneurs who have already
+            discovered the power of SceneSwitcher.io. Optimize your VSLs, engage
+            your audience, and take your conversions to new heights!
+          </p>
+        </div>
+
+        <div class="signup-banner">
+          <p>
+            Sign up now and experience the SceneSwitcher.io difference for
+            yourself. Your ROI will thank you!
+          </p>
+          <button>Get Started <img src="{% static 'assets/tail-dark.png' %}" alt="" /></button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="top">
+        <div class="footer-nav">
+          <div class="logo">
+            <img src="{% static 'assets/logo.png' %}" alt="" />
+          </div>
+          <nav>
+            <ul>
+              <a href="home"><li id="home">Home</li></a>
+              <a href="features"><li id="features">Features</li></a>
+              <a href="benefits"><li id="benefits">Benefits</li></a>
+              <a href="pricing"><li id="pricing">Pricing</li></a>
+              <a href="home"><li id="contact">Contact</li></a>
+            </ul>
+          </nav>
+          <div class="social-links">
+            <img src="{% static 'assets/facebook.png' %}" alt="" />
+            <img src="{% static 'assets/linkedin.png' %}" alt="" />
+            <img src="{% static 'assets/twitter.png' %}" alt="" />
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="bottom">
+        <p>© 2021 SceneSwitcher. All rights reserved.</p>
+      </div>
+    </footer>
+
+
+  </body>
+</html>
