@@ -23,6 +23,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
       * {
         margin: 0;
@@ -135,50 +136,95 @@
         font-family: Poppins;
         font-weight: 600;
       }
-      .video-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-      }
+
       .video-container h1 {
         font-family: Poppins;
         font-size: 18px;
         font-weight: 500;
         line-height: 36px;
         text-align: left;
-      }
-	
-	.video-container video {
-	  display: block;
-	}
-	
-	
-	
-	
-      video {
-        width: 100%;
-        height: 301px;
-        border-radius: 16px;
-        background: #d9d9d9;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      video div {
-        font-family: Poppins;
-        font-size: 26px;
-        font-weight: 500;
-        line-height: 60px;
-        text-align: left;
-        color: #000000b2;
-      }
+      }	
+	.video-container {
+    position: relative;
+    width: 100%;
+    height: 301px;
+    background: #d9d9d9;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    object-fit: contain;
+}
+
+.control-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10; /* Ensure button is on top of the video */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-button i {
+    font-size: 24px;
+}
+
+.custom-controls {
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    width: 90%;
+    transform: translateX(-50%);
+}
+
+.seek-bar {
+    width: 100%;
+    -webkit-appearance: none;
+    background: rgba(0, 0, 0, 0.5);
+    height: 4px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+.seek-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #fff;
+    border-radius: 50%;
+    height: 13px;
+    width: 13px;
+    cursor: pointer;
+}
+
+.seek-bar::-moz-range-thumb {
+    background: #fff;
+    border-radius: 50%;
+    height: 13px;
+    width: 13px;
+    cursor: pointer;
+}
+
       a {
         color: #bef264;
         text-decoration: none;
       }
-      button {
+      .button {
         padding: 4px 16px 4px 16px;
 	cursor : pointer;
         gap: 10px;
@@ -396,31 +442,86 @@
           </div>
         </div>
 
-            <div class="video-container">
-                <video id="videoPlayer" controls>
-                    <source src="{% url 'load_media' 'original_video.mp4' %}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+           <div class="video-container">
+	    <video id="videoPlayer" preload="auto">
+	        <source src="{% url 'load_media' 'original_video.mp4' %}" type="video/mp4">
+	        Your browser does not support the video tag.
+	    </video>
+	    <button id="playPauseBtn" class="control-button">
+	        <i class="fas fa-play"></i>
+	    </button>
+	    <div class="custom-controls">
+	        <input id="seekBar" type="range" min="0" max="100" value="0" step="0.1" class="seek-bar">
+	    </div>
+	   </div>
+
             <div id="spinner" class="spinner"></div> <!-- Loading Spinner -->
-            <button class="btn btn-success" onclick="processSegments()">Process</button>
+            <button class="btn btn-success button" onclick="processSegments()">Process</button>
         </div>
  	<script>
-	const video = document.getElementById("videoPlayer");
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById("videoPlayer");
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const seekBar = document.getElementById('seekBar');
+        const icon = playPauseBtn.querySelector('i');
+        const videoContainer = document.querySelector('.video-container');
+
+        // Update the seek bar as the video plays
+        video.addEventListener('timeupdate', () => {
+            const value = (video.currentTime / video.duration) * 100;
+            seekBar.value = value;
+        });
+
+        // Seek video when seek bar is changed
+        seekBar.addEventListener('input', () => {
+            const newTime = (seekBar.value / 100) * video.duration;
+            video.currentTime = newTime;
+        });
+
+        // Play/pause button functionality
+        playPauseBtn.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+            } else {
+                video.pause();
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+            }
+        });
+
+        // Handle video end
+        video.addEventListener('ended', () => {
+            video.pause();
+            video.currentTime = 0; // Reset video to the start
+            icon.classList.remove('fa-pause');
+            icon.classList.add('fa-play'); // Reset button to play icon
+            seekBar.value = 0; // Reset seek bar
+        });
+
+        // Optional: Ensure controls are hidden after a delay when not hovering
+        let hoverTimeout;
+        
+        videoContainer.addEventListener('mouseover', () => {
+            clearTimeout(hoverTimeout);
+            videoContainer.querySelectorAll('.custom-controls, .control-button').forEach(control => {
+                control.style.opacity = '1';
+            });
+        });
+
+        videoContainer.addEventListener('mouseout', () => {
+            hoverTimeout = setTimeout(() => {
+                videoContainer.querySelectorAll('.custom-controls, .control-button').forEach(control => {
+                    control.style.opacity = '0';
+                });
+            }, 1000);  // Adjust the delay (in milliseconds) as needed
+        });
+    });
+
 		
-	function showControls() {
-	  video.setAttribute("controls", "controls");
-	}
 	
-	function hideControls() {
-	  video.removeAttribute("controls");
-	}
-	
-	// Show controls when user hovers over video
-	video.addEventListener("mouseenter", showControls);
-	
-	// Hide controls when user stops hovering over video
-	video.addEventListener("mouseleave", hideControls);
 
       	const profilePic = document.getElementById("profile-pic");
       	const profileDialog = document.querySelector(".profile-dialog");
