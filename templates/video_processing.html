@@ -149,6 +149,14 @@
         line-height: 36px;
         text-align: left;
       }
+	
+	.video-container video {
+	  display: block;
+	}
+	
+	
+	
+	
       video {
         width: 100%;
         height: 301px;
@@ -398,6 +406,22 @@
             <button class="btn btn-success" onclick="processSegments()">Process</button>
         </div>
  	<script>
+	const video = document.getElementById("videoPlayer");
+		
+	function showControls() {
+	  video.setAttribute("controls", "controls");
+	}
+	
+	function hideControls() {
+	  video.removeAttribute("controls");
+	}
+	
+	// Show controls when user hovers over video
+	video.addEventListener("mouseenter", showControls);
+	
+	// Hide controls when user stops hovering over video
+	video.addEventListener("mouseleave", hideControls);
+
       	const profilePic = document.getElementById("profile-pic");
       	const profileDialog = document.querySelector(".profile-dialog");
 

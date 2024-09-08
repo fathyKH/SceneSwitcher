@@ -176,7 +176,7 @@
         </div>
         <div class="video-container">
 
-          <video id="videoPlayer" controls>
+          <video id="videoPlayer" preload="auto" controls>
                     <source src="{% url 'load_media' 'original_video.mp4' %}" type="video/mp4">
                     Your browser does not support the video tag.
           </video>
@@ -189,5 +189,23 @@
         </div>
       </div>
     </section>
+    <script>
+    const video = document.getElementById("videoPlayer");
+
+	function showControls() {
+	  video.setAttribute("controls", "controls");
+	}
+	
+	function hideControls() {
+	  video.removeAttribute("controls");
+	}
+	
+	// Show controls when the user hovers over the video
+	video.addEventListener("mouseenter", showControls);
+	
+	// Hide controls when the user stops hovering over the video
+	video.addEventListener("mouseleave", hideControls);
+
+    </script>
   </body>
 </html>

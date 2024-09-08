@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import request, JsonResponse,HttpResponseNotFound,HttpResponse
+from django.http import request, JsonResponse,HttpResponseNotFound,HttpResponse,StreamingHttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 from django.conf import settings
@@ -321,9 +321,10 @@ def load_media_file(request,file_name):
         file_path = os.path.join(settings.MEDIA_ROOT, 'uploads/' + file_name)
         with open(file_path, 'rb') as f:
             content = f.read()
-            content_type = 'application/octet-stream'
+            content_type = 'video/mp4'  #'application/octet-stream'
             response = HttpResponse(content, content_type=content_type)
             response['Content-Disposition'] = f'attachment; filename="{os.path.basename(file_path)}"'
+            response['Accept-Ranges'] = 'bytes'
             return response
     except FileNotFoundError:  
 
