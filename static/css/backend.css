@@ -201,7 +201,7 @@ form {
   font-weight: 300;
   line-height: 30px;
   text-align: right;
-  background: #022c22 url("assets/upload.png") no-repeat 12px center;
+  background: #022c22 url("/static/assets/upload.png") no-repeat 12px center;
   cursor: pointer;
 }
 
