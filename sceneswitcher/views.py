@@ -180,6 +180,7 @@ def process(request):
 	    
 	    static_out_file_server = os.path.join('static', 'output_root')
 	    tmp = os.path.join(os.getcwd(), 'media/tmp')
+	    upload_folder = os.path.join(os.getcwd(), 'media/uploads')
 	    final_out_path = os.path.join('static', 'output_root', 'final')
 	    outpath = os.path.join(static_out_file_server, 'output')
 	    
@@ -204,6 +205,7 @@ def process(request):
 	        os.makedirs(os.path.join(outpath, 'videos'), exist_ok=True)
 	        os.makedirs(final_out_path, exist_ok=True)
 	        os.makedirs(tmp, exist_ok=True)  # Ensure the tmp directory exists
+	        os.makedirs(upload_folder, exist_ok=True)  # Ensure the tmp directory exists
 	    except Exception as e:
 	        return JsonResponse({'status': 'error', 'message': f'An error occurred during directory creation: {e}'},status=500)
 	    
