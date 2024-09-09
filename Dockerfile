@@ -29,7 +29,7 @@ RUN python3.10 -m pip install matplotlib
 COPY ./policy.xml /etc/ImageMagick-6/policy.xml
 WORKDIR /app
 COPY . /app
-RUN mkdir sceneswitcher/media/uploads
+
 
 EXPOSE 8000
 
