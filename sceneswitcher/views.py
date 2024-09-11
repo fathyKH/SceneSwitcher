@@ -44,6 +44,7 @@ def video_processing_page(request):
 
 def get_srt_index(request):
     current_time = float(request.GET['time'])
+    logging.info(f"{current_time}")
     subtitles = load_subtitles_from_file(Path('media/uploads/original_subtitles.srt'))
     
     # Iterate over the subtitles to find which one matches the current time
@@ -144,7 +145,7 @@ def process_video(request):
 	    replacements = request.session.get('replacements', [])
 	    
 	    # Debug print to check if replacements exist
-	    #print(f"[DEBUG] Replacements: {replacements}", flush=True)
+	    print(f"[DEBUG] Replacements: {replacements}", flush=True)
 	    
 	    # Ensure we have replacements to process
 	    if not replacements:
@@ -357,7 +358,7 @@ def upload_new_scene(request):
 	    
 	    
 	    # Mark the session as modified to ensure it gets saved
-	    #session.modified = True
+	    request.session.modified = True
 	
 	    # Debug prints
 	    print(f"[DEBUG] Uploaded SRT Index: {srt_index}", flush=True)
